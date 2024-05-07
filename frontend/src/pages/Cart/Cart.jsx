@@ -1,9 +1,12 @@
 import React, { useContext } from 'react'
 import './Cart.css'
 import { StoreContext } from '../../components/context/StoreContext'
+import { useNavigate, useNavigation } from 'react-router-dom';
 const Cart = () => {
 
   const{cartItems,food_list,removeFromCart,getTotalCartAmount}= useContext(StoreContext);
+  const navigate = useNavigate();
+
   return(
     <div className='cart'>
       <div className="cart-items">
@@ -25,9 +28,9 @@ const Cart = () => {
                 <div className='cart-items-title cart-items-item '>
                 <img src={item.image} alt="" />
                 <p>{item.name}</p>
-                <p>₹{item.price}</p>
+                <p>${item.price}</p>
                 <p>{cartItems[item._id]}</p>
-                <p>₹{item.price*cartItems[item._id]}</p>
+                <p>${item.price*cartItems[item._id]}</p>
                 <p onClick={()=>removeFromCart(item._id)} className='cross'>x</p>
                 </div>
                 <hr />
@@ -47,17 +50,17 @@ const Cart = () => {
       <hr />
       <div className="cart-total-details">
         <p>Delievery Fee</p>
-        <p>₹{50}</p>
+        <p>${getTotalCartAmount()===0?0:2}</p>
       </div>
       <hr />
       <div className="cart-total-details">
         <b>Total</b>
-        <b>{getTotalCartAmount()+50}</b>
+        <b>{getTotalCartAmount()===0?0:getTotalCartAmount()+2}</b>
       </div>
       
 
     </div>
-    <button>Proceed To Checkout</button>
+    <button onClick={()=>navigate('/order')}>Proceed To Checkout</button>
   </div>
   <div className="cart-promocode"></div>
   <div>
