@@ -1,12 +1,13 @@
 import React from 'react'
 import './Footer.css'
+import {Link} from 'react-router-dom'
 import { assets } from '../../assets/assets'
 const Footer = () => {
   return (
     <div className='footer' id='footer'>
     <div className="footer-content">
         <div className="footer-content-left">
-        <h1>Delicious Food Services</h1>
+        <Link to='/'> <img src={assets.logo} alt=""  className='logo'/></Link>
         <p>Our Restorant provide the best services with good discount.It provide services like home delivery,Cashon delivery,upi,etc. the restorant </p>
         <div className="footer-social-icons">
             <img src={assets.facebook_icon} alt="" />
@@ -27,12 +28,12 @@ const Footer = () => {
             <h2>GET IN TOUCH</h2>
             <ul>
                 <li>+1-212-456-7890</li>
-                <li>contact@delicious.com</li>
+                <li>contact@foodin.com</li>
             </ul>
         </div>
     </div>   
     <hr/>
-    <p className='footer-copyright'>Copyright 2024 @ Delicious.com - All Right Reserved. </p>
+    <p className='footer-copyright'>Copyright 2024 @ foodin.com - All Right Reserved. </p>
       
     </div>
   )

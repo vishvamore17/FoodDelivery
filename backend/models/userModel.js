@@ -5,8 +5,13 @@ const userSchema = new mongoose.Schema({
     number:{type:Number, require:true},
     email:{type:String,required:true,unique:true},
     password:{type:String,required:true},
-    cartDate:{type:Object,default:{}}
+    cartData:{type:Object,default:{}},
+    otp:{type:Number,default:0}
+    // passwordResetToken:{type:String,required:true},
+    // passwordResetExpires:{type:Date,required:true},
 },{minimize:false})
+
+
 
 const userModel= mongoose.models.user || mongoose.model("user",userSchema);
 export default userModel;

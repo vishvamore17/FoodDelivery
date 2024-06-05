@@ -1,5 +1,5 @@
 import basket_icon from './basket_icon.png'
-import logo from './logo.png'
+import logo from './foodlogo.png'
 import header_img from './header_img.png'
 import search_icon from './search_icon.png'
 import menu_1 from './menu_1.png'
@@ -8,6 +8,7 @@ import menu_3 from './menu_3.png'
 import menu_4 from './menu_4.png'
 import menu_5 from './menu_5.png'
 import menu_6 from './menu_6.png'
+import delicioud from './delicioud.jpeg'
 
 
 import food_1 from './food_1.png'
@@ -78,20 +79,21 @@ export const assets = {
     profile_icon,
     logout_icon,
     bag_icon,
-    parcel_icon
+    parcel_icon,
+    delicioud
 }
 
 export const menu_list = [
     {
-        menu_name: "Salad",
+        menu_name: "Soup",
         menu_image: menu_1
     },
     {
-        menu_name: "Rolls",
+        menu_name: "Chap",
         menu_image: menu_2
     },
     {
-        menu_name: "Deserts",
+        menu_name: "Starter",
         menu_image: menu_3
     },
     {
@@ -99,7 +101,7 @@ export const menu_list = [
         menu_image: menu_4
     },
     {
-        menu_name: "Cake",
+        menu_name: "Desert",
         menu_image: menu_5
     },
     {
@@ -309,7 +311,7 @@ export const food_list = [
         price: 240,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Pasta"
-    }, {
+    },{
         _id: "29",
         name: "Buttter Noodles",
         image: food_29,

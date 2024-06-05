@@ -3,6 +3,8 @@
 }
 
 .food-display h2{
+    text-align:center;
+    color:green;
     font-size: max(2vw,24px);
     font-weight: 600;
 }
