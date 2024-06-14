@@ -1,7 +1,4 @@
-import { log } from "console";
 import foodModel from "../models/foodmodel.js";
-import fs from 'fs'
-
 const addFood = async(req,res)=>{
 
     let image_filename = `${req.file.filename}`;
@@ -23,7 +20,6 @@ const addFood = async(req,res)=>{
     }
 
 }
-
 const listFood = async(req,res)=>{
 
     try{
@@ -33,7 +29,13 @@ const listFood = async(req,res)=>{
          console.log("error");
          res.json({success:false,message:"Error"})
     }
-} 
+}
+
+  
+  
+  
+
+   
 
 const removeFood = async(req,res)=>{
 

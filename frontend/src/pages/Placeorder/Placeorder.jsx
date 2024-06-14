@@ -98,12 +98,12 @@ const Placeorder = () => {
       <hr />
       <div className="cart-total-details">
         <p>Delievery Fee</p>
-        <p>₹{0}</p>
+        <p>₹{50}</p>
       </div>
       <hr />
       <div className="cart-total-details">
         <b>Total</b>
-        <b>{getTotalCartAmount()+0}</b>
+        <b>{getTotalCartAmount()+50}</b>
       </div>
       
 

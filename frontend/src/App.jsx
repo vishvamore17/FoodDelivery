@@ -6,8 +6,11 @@ import Placeorder from './pages/Placeorder/Placeorder'
 import { Route, Routes } from 'react-router-dom'
 import Footer from './components/Footer/Footer'
 import LoginPopup from './components/LoginPopup/LoginPopup'
+import Reset from './components/LoginPopup/Reset'
 import Verify from './pages/Verify/Verify'
 import MyOrders from './pages/MyOrders/MyOrders'
+import location from './components/Location/location'
+import SearchResults from './components/SearchResults/SearchResults'
 
 const App = () => {
 
@@ -20,10 +23,12 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/cart' element={<Cart />} />
-          <Route path='/order' element={<Placeorder />} />
+         <Route path='/order' element={<Placeorder />} />
           <Route path='/verify' element={<Verify/>} />
           <Route path='/MyOrders' element={<MyOrders/>} />
-          
+         <Route path='/Location' element={<Location/>} />
+         <Route path='/resetPassword/:token' element={<Reset/>}/>
+         <Route path="/search" element={<SearchResults />} />
         </Routes>
       </div>
       <Footer />

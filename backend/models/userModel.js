@@ -1,3 +1,8 @@
+
+
+
+
+
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
@@ -6,12 +11,12 @@ const userSchema = new mongoose.Schema({
     email:{type:String,required:true,unique:true},
     password:{type:String,required:true},
     cartData:{type:Object,default:{}},
-    otp:{type:Number,default:0}
-    // passwordResetToken:{type:String,required:true},
-    // passwordResetExpires:{type:Date,required:true},
+    resetPasswordToken: { type: String },
+    resetPasswordExpires: { type: Date }
 },{minimize:false})
 
 
 
 const userModel= mongoose.models.user || mongoose.model("user",userSchema);
 export default userModel;
+

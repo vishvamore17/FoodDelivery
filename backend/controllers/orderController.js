@@ -26,7 +26,7 @@ const placeOrder = async (req,res) =>{
                     name:item.name
                 },
                 
-                unit_amount:item.price*80
+                unit_amount:item.price*100
             },
             quantity:item.quantity
       }))
@@ -36,7 +36,7 @@ const placeOrder = async (req,res) =>{
             product_data:{
                 name:"Delivery Charges"
             },
-            unit_amount:50*80 
+            unit_amount:50*100
         },
         quantity:1
       })
@@ -57,10 +57,10 @@ const placeOrder = async (req,res) =>{
     const {orderId,success} =req.body;
     try{
         if(success=="true"){
-            await orderModel.findByIdAndDelete(orderId,{payment:true});
+             await orderModel.findByIdAndUpdate(orderId,{payment:true});
             res.json({success:true,message:"paid"})
         }else{
-            await orderModel.findByIdAndDelete(orderId);
+           const orders= await orderModel.findByIdAndDelete(orderId);
             res.json({success:false,message:"not paid"})
         }
     }catch(error){
@@ -68,37 +68,42 @@ const placeOrder = async (req,res) =>{
         res.json({success:false,message:"Error"})
     }
  }
-
- const userOrders = async (req,res) =>{
+ const userOrders = async (req, res) => {
     try {
-        const orders = await orderModel.find({userId:req.body.userId})
-        res.json({success:true,data:orders})
+        const orders = await orderModel.find({ userId: req.body.userId });
+        res.json({ success: true, data: orders });
     } catch (error) {
         console.log(error);
-        res.json({success:false,message:"error"})   
+        res.json({ success: false, message: "error" });
     }
- }
+};
 
- //list order 
- const listOrders = async (req,res) =>{
-    try { 
-        const orders=await orderModel.findOne({});
-        res.json({success:true,data:orders})
+const listOrders = async (req, res) => {
+    try {
+        const orders = await orderModel.find({});
+        res.json({ success: true, data: orders });
     } catch (error) {
         console.log(error);
-        res.json({success:false,message:"error"})
+        res.json({ success: false, message: "error" });
     }
- }
+};
 
- //api for updating order status
- const updateStatus = async (req,res) =>{
- try{
-   const order =  await orderModel.findByIdAndUpdate(req.body.orderId,{status:req.body.status})
-    res.json({success:true,message:"status updated"})
- }catch(error){
-    console.log(error);
-    res.json({success:false,message:"error"})
- }
- }
 
+  
+const updateStatus = async (req, res) => {
+    try {
+        await orderModel.findByIdAndUpdate(
+            req.body.orderId,
+            { status: req.body.status },
+            { new: true } // Return the updated document
+        );
+        res.json({ success: true, message: "status updated" });
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: "error" });
+    }
+};
+
+  
+  
 export {placeOrder,verifyOrder,userOrders,listOrders,updateStatus}

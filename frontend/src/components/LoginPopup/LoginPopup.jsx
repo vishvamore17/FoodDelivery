@@ -3,6 +3,8 @@ import './LoginPopup.css';
 import { assets } from '../../assets/assets';
 import { StoreContext } from '../context/StoreContext';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginPopup = ({ setShowLogin,setUsername }) => {
   const { url, setToken } = useContext(StoreContext);
@@ -16,6 +18,7 @@ const LoginPopup = ({ setShowLogin,setUsername }) => {
 
   const [forgotPassword, setForgotPassword] = useState(false);
   const [forgotPasswordEmail, setForgotPasswordEmail] = useState("");
+  
 
   const onChangeHandler = (event) => {
     const name = event.target.name;
@@ -40,25 +43,26 @@ const LoginPopup = ({ setShowLogin,setUsername }) => {
       setShowLogin(false);
     } else {
       alert(response.data.message);
+
     }
   }
+  
 
   const onForgotPassword = async (event) => {
     event.preventDefault();
     // Send request to initiate password reset
-    const newUrl = url;
-    const response = await axios.post `http://localhost:4000/api/user/forgot` //{ email: forgotPasswordEmail };
+    const response = await axios.post(`${url}/api/user/forgotpassword`, { email: forgotPasswordEmail });
 
-    // if (response.data.success) {
-    //   alert("Password reset instructions sent to your email.");
-    //   // Optionally, you can close the login popup or show a message to the user
-    // } else {
-    //   alert(response.data.message);
-    // }
+    if (response.data.success) {
+      console.log(response); 
+    }else{
+      toast.success("email send")
+    } 
   }
-
+ 
   return (
     <div className='login-popup'>
+      <ToastContainer />
       <form onSubmit={forgotPassword ? onForgotPassword : onLogin} className='login-popup-container'>
         <div className='login-popup-title'>
           <h2>{forgotPassword ? "Forgot Password" : currState}</h2>
@@ -85,8 +89,11 @@ const LoginPopup = ({ setShowLogin,setUsername }) => {
               <input name="password" onChange={onChangeHandler} value={data.password} id='password' type='password' placeholder='Password' required />
             </>
           }
+
+
+
         </div>
-        <button type='submit'>{forgotPassword ? "Reset Password" : (currState === "Sign Up" ? "Create Account" : "Login")}</button>
+        <button type='submit'>Submit</button>
         {!forgotPassword &&
           <div className='login-popup-condition'>
             <input type="checkbox" required />
@@ -101,7 +108,10 @@ const LoginPopup = ({ setShowLogin,setUsername }) => {
             {currState === "Login" ? <p>Create a new account? <span onClick={() => setCurrState("Sign Up")}>Click here</span></p> : <p>Already have an account? <span onClick={() => setCurrState("Login")}>Login here</span></p>}
           </>
         }
-      </form>
+        
+       </form >
+        
+      
     </div>
   );
 }

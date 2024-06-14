@@ -5,7 +5,6 @@ import Exploremenu from '../../components/Exploremenu/Exploremenu'
 import FoodDisplay from '../../components/FoodDisplay/FoodDisplay'
 import AppDownload from '../../components/AppDownload/AppDownload'
 const Home = () => {
-
   const[category,setCategory]=useState("All");
   return (
     <div>
@@ -16,5 +15,4 @@ const Home = () => {
     </div>
   )
 }
-
 export default Home
